@@ -1,0 +1,50 @@
+PROGRAM = sdvgen
+
+CC = gcc
+LD = ld
+LEX = flex
+YACC = bison
+YFLAGS = -v -d
+LFLAGS =
+CFLAGS = -g -Wall -MMD -I./include -std=c99
+
+OBJ += list.o
+OBJ += debug.o
+OBJ += builder.o
+OBJ += parser.o
+OBJ += file.o
+OBJ += parser_bison.o
+
+DEPS = $(patsubst %.o,%.d,$(OBJ))
+
+all: $(PROGRAM) tags
+
+$(PROGRAM): $(OBJ)
+	$(CC) $(CFLAGS) -o $@ $^
+
+parser.o: parser.c parser_bison.c
+parser_bison.o: parser_bison.c
+builder.o: builder.c parser_bison.c
+
+parser.c: parser.l
+	$(LEX) $(LFLAGS) -o parser.c $<
+
+parser_bison.c: parser_bison.y
+	$(YACC) $(YFLAGS) $<
+	mv parser_bison.tab.c parser_bison.c
+	mv parser_bison.tab.h parser_bison.h
+
+%.o: %.S
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+tags:
+	ctags -R .
+
+clean:
+	rm -rf $(PROGRAM) $(OBJ) $(DEPS) parser.c parser_bison.c parser_bison.h parser_bison.output tags
+
+-include $(DEPS)
+

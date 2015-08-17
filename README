@@ -1,0 +1,28 @@
+                       _____ ____ _    ______  _____
+                      / ___// __ \ |  / / __ \/ ___/
+                      \__ \/ / / / | / / / / /\__ \ 
+                     ___/ / /_/ /| |/ / /_/ /___/ / 
+                    /____/_____/ |___/\____//____/  
+                                                    
+               Standard Dependable Vehicle Operating System
+                        Copyright (C) 2015 Ye Li
+
+SDVOS is an OSEK and AUTOSAR compliant operating system designed to offer high
+configurability and efficiency for embedded automotive applications. SDVOS
+conforms to OSEK BCC1/2 and ECC1/2. Additionally, it supports AUTOSAR schedule
+tables and software counters. Other AUTOSAR features and driver supports are
+under active development.
+
+Currently, the supported architectures include AVR5, ARM Cortex M3, and M4 with
+FPU support. Reference boards currently supported include NUCLEO boards,
+Arduino UNO, STM32 Discovery, etc. Additionally, an SDVOS instance can be
+executed in the Linux environment for testing and debugging.
+
+For more information, please visit: http://www.sdvos.org
+(Site currently under construction. Will be online soon.)
+
+                        _______ _   ______  ____
+                       / __/ _ \ | / / __ \/ __/
+                      _\ \/ // / |/ / /_/ /\ \  
+                     /___/____/|___/\____/___/  
+

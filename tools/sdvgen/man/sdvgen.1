@@ -1,0 +1,88 @@
+.\" Manpage for sdvgen.
+.\" Contact liye@sdvos.com to correct errors or typos.
+.TH "SDVGEN" "1" "December 16, 2014" "0.1" "sdvgen man page"
+.SH NAME
+sdvgen \- SDVOS System Generator.
+.SH SYNOPSIS
+sdvgen [Options] CONFIG_FILE
+.SH DESCRIPTION
+sdvgen parses an OSEK OIL file and generates all the configuration files needed by SDVOS for a target platform. Currently, these configuration files include: config.mk, config/config.c, config/config.h, and apps/config.mk.
+.SH OPTIONS
+.TP
+.B "\-i <include_path>"
+specifies OIL file include path. OIL files can be split into different files and included with C style include directive.
+.B <include_path>
+can be multiple paths separated by
+.B \':\'
+.TP
+.B "\-s <sdvos_base>"
+specifies the SDVOS source root directory.
+.TP
+.B "\-r"
+generates resource statistics after parsing OIL file.
+.TP
+.B "\-t"
+generates configration files to STDOUT for test/verify.
+.TP
+.B "\-d"
+dumps all the system objects after parsing OIL file. This can be used to check the integrity of objects and dicover potential parser bugs.
+.TP
+.B "\-b"
+backs up all configuration files before creating new ones. Old files will be copied to hidden files of the same names in the same directory.
+.TP
+.B "\-m"
+builds the system image after generating all the configuration files.
+.TP
+.B "\-h"
+displays help message and exits.
+.TP
+.B "\-v"
+outputs version information and exits.
+.SH EXAMPLES
+.TP
+\fBsdvgen\ \-r\ \fIconfig.oil
+Read the OIL file
+.I config.oil
+and display a system resource statistics report
+.TP
+\fBsdvgen\ \-d\ \fIconfig.oil
+Read the OIL file
+.I config.oil
+and display all the system objects
+.TP
+\fBsdvgen\ \-s\ \fI/path/to/sdvos/src\ \fB\-t\ \fIconfig.oil
+Read the OIL file
+.I config.oil
+and display all the configuration files on STDOUT for test and verification.
+.TP
+\fBsdvgen\ \-i\ \fI/include/path1:/include/path2\ \fB\-s\ \fI/path/to/sdvos/src \fIconfig.oil
+Set OIL file include path to
+.I /include/path1
+and
+.I /include/path2
+, read the OIL file
+.I config.oil
+and generate all the configuration files for the SDVOS kernel source tree located at
+.I /path/to/sdvos/src
+.TP
+\fBsdvgen\ \-s\ \fI/path/to/sdvos/src\ \fB\-b\ \fIconfig.oil
+Read the OIL file
+.I config.oil
+, back up all the old configration files and generate all the new configuration files for the SDVOS kernel source tree located at
+.I /path/to/sdvos/src
+.TP
+\fBsdvgen\ \-s\ \fI/path/to/sdvos/src\ \fB\-b\ \-r\ \-d\ \fIconfig.oil
+Same as above, but also generate resource statistics report and display all the system objects to STDOUT.
+.TP
+\fBsdvgen\ \-s\ \fI/path/to/sdvos/src\ \fB\-b\ \-r\ \-d\ \-m\ \fIconfig.oil
+Same as above, but also generate a system image using the new configuration files and kernel source located at
+.I /path/to/sdvos/src
+This is essentially changing directory to
+.I /path/to/sdvos/src
+and issue a
+.B make.
+The system image can be found in the kernel source directory.
+.SH BUGS
+Please report any bugs to liye@sdvos.com
+.SH AUTHOR
+Ye Li (liye@sdvos.org)

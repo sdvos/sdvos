@@ -1,0 +1,25 @@
+sdvgen is the system generator for SDVOS kernel. To compile and install, simply
+do the following:
+
+  $> cd sdvgen
+  $> ./autogen.sh
+  $> ./configure --prefix=/usr/local
+  $> make
+  $> make install
+
+After installation, checkout the manual page with:
+
+  $> man sdvgen
+
+Descriptions of options and examples are available in the manual page.
+
+If you do not want to use the configuration script, there is also an existing
+Makefile that you can use to compile sdvgen manually. This makefile is called
+Makefile.manual in the src directory. To compile manually, do the following:
+
+  $> cd sdvgen/src
+  $> make -f Makefile.manual
+
+Before doing this, please make sure you have lex and yacc (or flex and bison)
+installed on your system.
+

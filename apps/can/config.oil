@@ -1,0 +1,57 @@
+OIL_VERSION = "2.5";
+
+#include <sdvos.oil>
+
+CPU ARMCortexM4 {
+  OS CAN_EXAMPLE_OS {
+    STATUS = EXTENDED;
+    STARTUPHOOK = TRUE;
+    ERRORHOOK = TRUE;
+    SHUTDOWNHOOK = FALSE;
+    PRETASKHOOK = FALSE;
+    POSTTASKHOOK = FALSE;
+    USEGETSERVICEID = TRUE;
+    USEPARAMETERACCESS = TRUE;
+    USERESSCHEDULER = TRUE;
+    DEBUGLEVEL = 2;
+    BOARD = STM32F4DISCOVERY;
+    DRIVER = "uart/stm32f4xx_uart";
+    DRIVER = "can/stm32f4xx_bxcan";
+  };
+
+  TASK task1 {
+    PRIORITY = 1;
+    SCHEDULE = FULL;
+    ACTIVATION = 1;
+    AUTOSTART = TRUE {
+      APPMODE = AppMode0;
+    };
+    STACKSIZE = 0x100;
+    EVENT = event1;
+  };
+
+  APPMODE AppMode0 {
+    DEFAULT = TRUE;
+  };
+
+  COUNTER SYS_COUNTER {
+    MINCYCLE = 1;
+    MAXALLOWEDVALUE = 0xFFFF;
+    TICKSPERBASE = 1;
+  };
+
+  EVENT event1 {
+    MASK = AUTO;
+  };
+
+  ISR isr6 {
+    CATEGORY = 2;
+    VECTOR = 6;
+  };
+
+  ISR isr20 {
+    CATEGORY = 2;
+    VECTOR = 20;
+  };
+};
+

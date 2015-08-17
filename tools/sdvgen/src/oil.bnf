@@ -1,0 +1,217 @@
+<file> ::=
+    <OIL_version>
+    <implementation_definition>
+    <application_definition>
+
+<OIL_version> ::=
+    "OIL_VERSION" "=" <version> <description> ";"
+
+<version> ::= <string>
+
+<implementation_definition> ::=
+    "IMPLEMENTATION" <name> "{" <implementation_spec_list> "}"
+    <description> ";"
+
+<implementation_spec_list> ::=
+    <implementation_spec>
+    | <implementation_spec_list> <implementation_spec>
+
+<implementation_spec> ::=
+    <object> "{" <implementation_list> "}" <description> ";"
+
+<object> ::=
+    "OS" | "TASK" | "COUNTER" | "ALARM" | "RESOURCE" | "EVENT" | "ISR"
+    | "MESSAGE" | "COM" | "NM" | "APPMODE" | "IPDU"
+
+<implementation_list> ::=
+    /* empty list */
+    | <implementation_def>
+    | <implementation_list> <implementation_def>
+
+<implementation_def> ::= <impl_attr_def> | <impl_ref_def>
+
+<impl_attr_def> ::=
+    "UINT32" <auto_specifier> <number_range> <attribute_name>
+    <multiple_specifier><default_number> <description> ";"
+    | "INT32" <auto_specifier> <number_range> <attribute_name>
+    <multiple_specifier> <default_number> <description> ";"
+    | "UINT64" <auto_specifier> <number_range> <attribute_name>
+    <multiple_specifier> <default_number> <description> ";"
+    | "INT64" <auto_specifier> <number_range> <attribute_name>
+    <multiple_specifier> <default_number>
+    <description> ";"
+    | "FLOAT" <auto_specifier> <float_range> <attribute_name>
+    <multiple_specifier> <default_float>
+    <description> ";"
+    | "ENUM" <auto_specifier> <enumeration> <attribute_name>
+    <multiple_specifier> <default_name>
+    <description> ";"
+    | "STRING" <auto_specifier> <attribute_name>
+    <multiple_specifier> <default_string>
+    <description> ";"
+    | "BOOLEAN" <auto_specifier> <bool_values> <attribute_name>
+    <multiple_specifier> <default_bool>
+    <description> ";"
+
+<impl_parameter_list> ::=
+    /* empty definition */
+    |"{" <impl_def_list> "}"
+
+<impl_def_list> ::=
+    /* empty definition */
+    | <implementation_def>
+    | <implementation_def> <impl_def_list>
+
+<auto_specifier> ::=
+    /* empty definition */
+    | "WITH_AUTO"
+
+<number_range> ::=
+    /* empty definition */
+    | "[" <number> ".." <number> "]"
+    | "[" <number_list> "]"
+
+<number_list> ::=
+    <number> | <number_list> "," <number>
+
+<default_number> ::=
+    /* empty definition */
+    | "=" <number> | "=" "NO_DEFAULT" | "=" "AUTO"
+
+<description> ::=
+    /* empty definition */
+    | ":" <string>
+
+<float_range> ::=
+    /* empty definition */
+    | "[" <float> ".." <float> "]"
+
+<default_float> ::=
+    /* empty definition */
+    | "=" <float> | "=" "NO_DEFAULT" | "=" "AUTO"
+
+<enumeration> ::=
+    "[" <enumerator_list> "]"
+
+<enumerator_list> ::=
+    <enumerator>
+    | <enumerator_list> "," <enumerator>
+
+<enumerator> ::=
+    <name> <description>
+    | <name> <impl_parameter_list> <description>
+
+<bool_values> ::=
+    /* empty definition */
+    | "[" "TRUE" <impl_parameter_list> <description> ","
+    "FALSE" <impl_parameter_list> <description> "]"
+
+<default_name> ::=
+    /* empty definition */
+    | "=" <name> | "=" "NO_DEFAULT" | "=" "AUTO"
+
+<default_string> ::=
+    /* empty definition */
+    | "=" <string> | "=" "NO_DEFAULT" | "=" "AUTO"
+
+<default_bool> ::=
+    /* empty definition */
+    | "=" <boolean> | "=" "NO_DEFAULT" | "=" "AUTO"
+
+<impl_ref_def> ::=
+    <object_ref_type> <reference_name> <multiple_specifier> <description>";"
+
+<object_ref_type> ::=
+    "OS_TYPE" | "TASK_TYPE" | "COUNTER_TYPE" | "ALARM_TYPE"
+    | "RESOURCE_TYPE" | "EVENT_TYPE" | "ISR_TYPE"
+    | "MESSAGE_TYPE" | "COM_TYPE" | "NM_TYPE" | "APPMODE_TYPE"
+    | "IPDU_TYPE"
+
+<reference_name> ::= <name> | <object>
+
+<multiple_specifier> ::=
+    /* empty definition */
+    | "[" "]"
+
+<application_definition> ::=
+    "CPU" <name> "{" <object_definition_list> "}" <description> ";"
+
+<object_definition_list> ::=
+    /* empty definition */
+    | <object_definition>
+    | <object_definition_list> <object_definition>
+
+<object_definition> ::=
+    <object_name> <description> ";"
+    | <object_name> "{" <parameter_list> "}" <description> ";"
+
+<object_name> ::= <object> <name>
+
+<parameter_list> ::=
+    /* empty definition */
+    | <parameter>
+    | <parameter_list> <parameter>
+
+<parameter> ::=
+    <attribute_name> "=" <attribute_value> <description> ";"
+
+<attribute_name> ::= <name> | <object>
+
+<attribute_value> ::=
+    <name>
+    | <name> "{" <parameter_list> "}"
+    | <boolean>
+    | <boolean> "{" <parameter_list> "}"
+    | <number>
+    | <float>
+    | <string>
+    | "AUTO"
+
+<name> ::= Name
+
+<string> ::= String
+
+<boolean> ::= "FALSE" | "TRUE"
+
+<number> ::= <dec_number> | <hex_number>
+
+<dec_number> ::= <sign> <int_digits>
+
+<sign> ::=
+    /* empty definition */
+    | "+"
+    | "-"
+
+<int_digits> ::=
+    <zero_digit>
+    | <pos_digit>
+    | <pos_digit> <dec_digits>
+
+<dec_digits> ::=
+    | <dec_digit>
+    | <dec_digit> <dec_digits>
+
+<float> ::=
+    <sign> <dec_digits> "." <dec_digits> <exponent>
+
+<exponent> ::=
+    /* empty definition */
+    | "e" <sign> <dec_digits>
+    | "E" <sign> <dec_digits>
+
+<zero_digit> ::= "0"
+
+<pos_digit> ::=
+    "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+
+<dec_digit> ::= <zero_digit> | <pos_digit>
+
+<hex_number> ::= "0x" <hex_digits>
+
+<hex_digits> ::= <hex_digit> | <hex_digit> <hex_digits>
+
+<hex_digit> ::=
+    "A" | "B" | "C" | "D" | "E" | "F"
+    | "a" | "b" | "c" | "d" | "e" | "f"
+    | "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+
