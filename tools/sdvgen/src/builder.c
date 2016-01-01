@@ -636,36 +636,38 @@ resource_err:
             goto alarm_err;
           alarm->autostart = value->v.b;
 
-          for_each (param, value->list, index) {
-            switch (param->attribute) {
-              case ATTR_ALARMTIME :
-                if (param->value->value_type != VALUE_TYPE_INT)
-                  goto alarm_err;
-                if (!CHK_RANGE (param->value->v.s8b, MAX_ALARMTIME)) {
-                  sderror ("ALARMTIME out of range!", value->lineno);
+          if (alarm->autostart) {
+            for_each (param, value->list, index) {
+              switch (param->attribute) {
+                case ATTR_ALARMTIME :
+                  if (param->value->value_type != VALUE_TYPE_INT)
+                    goto alarm_err;
+                  if (!CHK_RANGE (param->value->v.s8b, MAX_ALARMTIME)) {
+                    sderror ("ALARMTIME out of range!", value->lineno);
+                    return ERR_ATTRIBUTE;
+                  }
+                  alarm->alarm_time = param->value->v.s4b;
+                  break;
+                case ATTR_CYCLETIME :
+                  if (param->value->value_type != VALUE_TYPE_INT)
+                    goto alarm_err;
+                  if (!CHK_RANGE (param->value->v.s8b, MAX_CYCLETIME)) {
+                    sderror ("CYCLETIME out of range!", value->lineno);
+                    return ERR_ATTRIBUTE;
+                  }
+                  alarm->cycle_time = param->value->v.s4b;
+                  break;
+                case APPMODE :
+                  if (param->value->value_type != VALUE_TYPE_STRING)
+                    goto alarm_err;
+                  object_list_add (&(alarm->appmode),
+                                   get_appmode_object (param->value->v.s));
+                  break;
+                default :
+                  sderror ("Unknow attribute in Alarm AUTOSTART!",
+                           value->lineno);
                   return ERR_ATTRIBUTE;
-                }
-                alarm->alarm_time = param->value->v.s4b;
-                break;
-              case ATTR_CYCLETIME :
-                if (param->value->value_type != VALUE_TYPE_INT)
-                  goto alarm_err;
-                if (!CHK_RANGE (param->value->v.s8b, MAX_CYCLETIME)) {
-                  sderror ("CYCLETIME out of range!", value->lineno);
-                  return ERR_ATTRIBUTE;
-                }
-                alarm->cycle_time = param->value->v.s4b;
-                break;
-              case APPMODE :
-                if (param->value->value_type != VALUE_TYPE_STRING)
-                  goto alarm_err;
-                object_list_add (&(alarm->appmode),
-                                 get_appmode_object (param->value->v.s));
-                break;
-              default :
-                sderror ("Unknow attribute in Alarm AUTOSTART!",
-                         value->lineno);
-                return ERR_ATTRIBUTE;
+              }
             }
           }
 
@@ -1007,47 +1009,53 @@ exp_err:
             goto sched_tbl_err;
           sched_tbl->autostart = value->v.b;
 
-          for_each (param, value->list, index) {
-            switch (param->attribute) {
-              case ATTR_STARTMODE :
-                if (param->value->value_type != VALUE_TYPE_START_MODE)
-                  goto sched_tbl_err;
-                switch (param->value->v.s4b) {
-                  case ABSOLUTE :
-                    sched_tbl->start_mode = SCHEDTBL_STARTMODE_ABSOLUTE;
-                    break;
-                  case RELATIVE :
-                    sched_tbl->start_mode = SCHEDTBL_STARTMODE_RELATIVE;
-                    break;
-                  case SYNCHRON :
-                    sched_tbl->start_mode = SCHEDTBL_STARTMODE_SYNCHRON;
-                    break;
-                  default :
-                    sderror ("Unknown schedule table start mode!",
+          if (sched_tbl->autostart) {
+            for_each (param, value->list, index) {
+              switch (param->attribute) {
+                case ATTR_STARTMODE :
+                  if (param->value->value_type != VALUE_TYPE_START_MODE)
+                    goto sched_tbl_err;
+                  switch (param->value->v.s4b) {
+                    case ABSOLUTE :
+                      sched_tbl->start_mode =
+                        SCHEDTBL_STARTMODE_ABSOLUTE;
+                      break;
+                    case RELATIVE :
+                      sched_tbl->start_mode =
+                        SCHEDTBL_STARTMODE_RELATIVE;
+                      break;
+                    case SYNCHRON :
+                      sched_tbl->start_mode =
+                        SCHEDTBL_STARTMODE_SYNCHRON;
+                      break;
+                    default :
+                      sderror ("Unknown schedule table start mode!",
+                               param->value->lineno);
+                      return ERR_ATTRIBUTE;
+                  }
+                  break;
+                case ATTR_STARTVALUE :
+                  if (param->value->value_type != VALUE_TYPE_INT)
+                    goto sched_tbl_err;
+                  if (!CHK_RANGE (param->value->v.s8b,
+                      MAX_MAXALLOWEDVALUE)) {
+                    sderror ("STARTVALUE out of range!",
                              param->value->lineno);
                     return ERR_ATTRIBUTE;
-                }
-                break;
-              case ATTR_STARTVALUE :
-                if (param->value->value_type != VALUE_TYPE_INT)
-                  goto sched_tbl_err;
-                if (!CHK_RANGE (param->value->v.s8b,
-                    MAX_MAXALLOWEDVALUE)) {
-                  sderror ("STARTVALUE out of range!", param->value->lineno);
+                  }
+                  sched_tbl->start_value = param->value->v.s4b;
+                  break;
+                case APPMODE :
+                  if (param->value->value_type != VALUE_TYPE_STRING)
+                    goto sched_tbl_err;
+                  object_list_add (&(sched_tbl->appmode),
+                                   get_appmode_object (param->value->v.s));
+                  break;
+                default :
+                  sderror ("Unknow attribute in Schedule Table AUTOSTART!",
+                           param->value->lineno);
                   return ERR_ATTRIBUTE;
-                }
-                sched_tbl->start_value = param->value->v.s4b;
-                break;
-              case APPMODE :
-                if (param->value->value_type != VALUE_TYPE_STRING)
-                  goto sched_tbl_err;
-                object_list_add (&(sched_tbl->appmode),
-                                 get_appmode_object (param->value->v.s));
-                break;
-              default :
-                sderror ("Unknow attribute in Schedule Table AUTOSTART!",
-                         param->value->lineno);
-                return ERR_ATTRIBUTE;
+              }
             }
           }
 
@@ -1418,11 +1426,11 @@ update_oil_objects ()
         fprintf (stderr, "%s action unknown!\n", alarm->name);
         exit (1);
     }
-    if (alarm->alarm_time == -1) {
+    if (alarm->autostart && alarm->alarm_time == -1) {
       fprintf (stderr, "%s alarm_time not specified!\n", alarm->name);
       exit (1);
     }
-    if (alarm->cycle_time == -1) {
+    if (alarm->autostart && alarm->cycle_time == -1) {
       fprintf (stderr, "%s cycle_time not specified!\n", alarm->name);
       exit (1);
     }
