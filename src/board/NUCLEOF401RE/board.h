@@ -27,6 +27,8 @@
 
 #include "stm32f401xe.h"
 
+#define BOARDNAME  NUCLEOF401RE
+
 #endif
 
 /* vi: set et ai sw=2 sts=2: */

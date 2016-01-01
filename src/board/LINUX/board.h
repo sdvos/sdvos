@@ -25,6 +25,8 @@
 #ifndef _BOARD_H_
 #define _BOARD_H_
 
+#define BOARDNAME  LINUX
+
 #endif
 
 /* vi: set et ai sw=2 sts=2: */

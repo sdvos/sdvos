@@ -65,6 +65,59 @@
 #define FALSE  0
 #endif
 
+/**
+ * @def KERNEL_VERSION
+ * @brief Convert kernel version to an integer
+ *
+ * Convert a.b.c version to integer aabbcc. The bigger the
+ * number, the newer the version.
+ *
+ * param[in] a
+ *   Kernel version number (2 digits max)
+ * param[in] b
+ *   Major revision number (2 digits max)
+ * param[in] c
+ *   Minor revision number (2 digits max)
+ */
+#define KERNEL_VERSION(a, b, c)    (a * 10000 + b * 100 + c)
+
+/** Current kernel version integer */
+#define CURRENT_KERNEL_VERSION     KERNEL_VERSION(0, 0, 1)
+
+/**
+ * @def GET_KERNEL_VERSION
+ * @brief Return kernel version from full version integer
+ *
+ * param[in]
+ *   Full kernel version integer
+ */
+#define GET_KERNEL_VERSION(v)                 \
+  (CURRENT_KERNEL_VERSION / 10000)
+
+/**
+ * @def GET_MAJOR_REVISION
+ * @brief
+ * Return kernel major revision number from full version
+ * integer
+ *
+ * param[in]
+ *   Full kernel version integer
+ */
+#define GET_MAJOR_REVISION(v)                 \
+  ((CURRENT_KERNEL_VERSION % 10000) / 100)
+
+/**
+ * @def GET_MINOR_REVISION
+ * @brief
+ * Return kernel minor revision number from full version
+ * integer
+ *
+ * param[in]
+ *   Full kernel version integer
+ */
+#define GET_MINOR_REVISION(v)                  \
+  (CURRENT_KERNEL_VERSION % 100)
+
 /** Counter used for nested ISR level count */
 extern uatomic_t NestedISRs;
 

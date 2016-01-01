@@ -27,6 +27,8 @@
 
 #include "stm32f407xx.h"
 
+#define BOARDNAME  STM32F4DISCOVERY
+
 #endif
 
 /* vi: set et ai sw=2 sts=2: */

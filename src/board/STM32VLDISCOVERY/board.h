@@ -27,6 +27,8 @@
 
 #include "stm32f100xb.h"
 
+#define BOARDNAME  STM32VLDISCOVERY
+
 #endif
 
 /* vi: set et ai sw=2 sts=2: */
