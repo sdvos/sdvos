@@ -202,7 +202,7 @@ typedef struct counter_t {
  * AlarmIsActive returns 0 if alarm is not in use, returns
  * 1 if alarm is in use.
  *
- * param[in] alarm
+ * @param[in] alarm
  *   Alarm ID of type AlarmType
  */
 #define AlarmIsActive(alarm)                   \
@@ -215,7 +215,7 @@ typedef struct counter_t {
  * Retrieves the value of OVF bit in status flag of a
  * counter.
  *
- * param[in] counter
+ * @param[in] counter
  *   Reference to a counter object
  */
 #define CounterOVF(counter)                    \
@@ -228,7 +228,7 @@ typedef struct counter_t {
  * Retrieves the value of OVF bit in status flag of an
  * alarm.
  *
- * param[in] alarm
+ * @param[in] alarm
  *   Alarm ID of type AlarmType
  */
 #define AlarmOVF(alarm)                        \
@@ -241,7 +241,7 @@ typedef struct counter_t {
  * Retrieves the value of OVF bit in flag of a schedule
  * table.
  *
- * param[in] tbl
+ * @param[in] tbl
  *   Schedule table ID of type ScheduleTableType
  */
 #define ScheduleTableOVF(tbl)                  \
@@ -255,7 +255,7 @@ typedef struct counter_t {
  * The OVF bit of a counter will be toggled every time
  * its count overflows.
  *
- * param[in] counter
+ * @param[in] counter
  *   Reference to a counter object
  */
 #define ToggleCounterOVF(counter)                            \
@@ -271,7 +271,7 @@ typedef struct counter_t {
  * Toggles the OVF bit in the status flag of an alarm
  * according to its counter OVF status.
  *
- * param[in] alarm
+ * @param[in] alarm
  *   Alarm ID of type AlarmType
  */
 #define ToggleAlarmOVF(alarm)                                   \
@@ -287,7 +287,7 @@ typedef struct counter_t {
  * Sets the OVF bit in the status flag of an alarm to its
  * counter OVF value.
  *
- * param[in] alarm
+ * @param[in] alarm
  *   Alarm ID of type AlarmType
  */
 #define SetAlarmOVF(alarm)                                      \
@@ -303,7 +303,7 @@ typedef struct counter_t {
  * Toggles the OVF bit in the flag of a schedule table
  * according to its counter OVF status.
  *
- * param[in] tbl
+ * @param[in] tbl
  *   Schedule table ID of type ScheduleTableType
  */
 #define ToggleScheduleTableOVF(tbl)                             \
@@ -319,7 +319,7 @@ typedef struct counter_t {
  * Sets the OVF bit in the flag of a schedule table to its
  * counter OVF value.
  *
- * param[in] tbl
+ * @param[in] tbl
  *   Schedule table ID of type ScheduleTableType
  */
 #define SetScheduleTableOVF(tbl)                                \

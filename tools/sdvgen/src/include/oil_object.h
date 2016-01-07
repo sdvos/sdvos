@@ -93,6 +93,8 @@ typedef struct oil_os_object {
   uint32_t debuglevel;
   /* Default is NULL */
   char * board;
+  /* Default is FALSE */
+  bool shell;
 } oil_os_object_t;
 
 typedef struct oil_appmode_object {

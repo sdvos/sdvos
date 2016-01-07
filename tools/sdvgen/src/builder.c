@@ -385,6 +385,10 @@ object_add_param (generic_oil_object_t * object,
           if (value->value_type != VALUE_TYPE_STRING_CONST) goto os_err;
           get_driver_object (value->v.s);
           break;
+        case ATTR_SHELL :
+          if (value->value_type != VALUE_TYPE_BOOL) goto os_err;
+          os->shell = value->v.b;
+          break;
         default :
           sderror ("Unknown attribute in OS object!", value->lineno);
           return ERR_ATTRIBUTE;
@@ -1788,6 +1792,11 @@ generate_code ()
   PRT_CFGMK ("OBJ += debug.o\n");
   PRT_CFGMK ("OBJ += config/config.o\n");
   PRT_CFGMK ("OBJ += printf.o\n");
+
+  if (oil_os->shell) {
+    /* Shell configured */
+    PRT_CFGMK ("OBJ += shell.o\n");
+  }
 
   if (with_sched_tbl) {
     PRT_CFGMK ("# AUTOSAR objects\n");

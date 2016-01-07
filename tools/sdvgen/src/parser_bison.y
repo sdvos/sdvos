@@ -103,6 +103,7 @@ extern void sderror (const char *s, int line, ...);
 %token <i> ATTR_DEBUGLEVEL
 %token <i> ATTR_BOARD
 %token <i> ATTR_DRIVER
+%token <i> ATTR_SHELL
 %token <i> ATTR_PRIORITY
 %token <i> ATTR_SCHEDULE
 %token <i> ATTR_ACTIVATION
@@ -175,6 +176,7 @@ obj_name : OS ID {
     oil_os->use_resscheduler = TRUE;
     oil_os->debuglevel = 2;
     oil_os->board = NULL;
+    oil_os->shell = FALSE;
   } else {
     if (strncmp ($2, oil_os->name, strlen (oil_os->name))) {
       yyerror ("Multiple OS object detected!");
@@ -282,6 +284,7 @@ attr_name : oil_obj { $$ = $1; }
           | ATTR_DEBUGLEVEL { $$ = $1; }
           | ATTR_BOARD { $$ = $1; }
           | ATTR_DRIVER { $$ = $1; }
+          | ATTR_SHELL { $$ = $1; }
           | ATTR_PRIORITY { $$ = $1; }
           | ATTR_SCHEDULE { $$ = $1; }
           | ATTR_ACTIVATION { $$ = $1; }

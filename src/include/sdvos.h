@@ -72,23 +72,23 @@
  * Convert a.b.c version to integer aabbcc. The bigger the
  * number, the newer the version.
  *
- * param[in] a
+ * @param[in] a
  *   Kernel version number (2 digits max)
- * param[in] b
+ * @param[in] b
  *   Major revision number (2 digits max)
- * param[in] c
+ * @param[in] c
  *   Minor revision number (2 digits max)
  */
 #define KERNEL_VERSION(a, b, c)    (a * 10000 + b * 100 + c)
 
 /** Current kernel version integer */
-#define CURRENT_KERNEL_VERSION     KERNEL_VERSION(0, 0, 1)
+#define CURRENT_KERNEL_VERSION     KERNEL_VERSION(0, 1, 0)
 
 /**
  * @def GET_KERNEL_VERSION
  * @brief Return kernel version from full version integer
  *
- * param[in]
+ * @param[in]
  *   Full kernel version integer
  */
 #define GET_KERNEL_VERSION(v)                 \
@@ -100,7 +100,7 @@
  * Return kernel major revision number from full version
  * integer
  *
- * param[in]
+ * @param[in]
  *   Full kernel version integer
  */
 #define GET_MAJOR_REVISION(v)                 \
@@ -112,7 +112,7 @@
  * Return kernel minor revision number from full version
  * integer
  *
- * param[in]
+ * @param[in]
  *   Full kernel version integer
  */
 #define GET_MINOR_REVISION(v)                  \
@@ -130,9 +130,9 @@ extern IRQType isr2_list[NUM_ISR2];
  * @def MAX
  * @brief Return the bigger of value a and b
  *
- * param[in] a
+ * @param[in] a
  *   Value a
- * param[in] b
+ * @param[in] b
  *   Value b
  */
 #define MAX(a, b)    ((a) > (b)) ? (a) : (b)
@@ -141,9 +141,9 @@ extern IRQType isr2_list[NUM_ISR2];
  * @def MIN
  * @brief Return the smaller of value a and b
  *
- * param[in] a
+ * @param[in] a
  *   Value a
- * param[in] b
+ * @param[in] b
  *   Value b
  */
 #define MIN(a, b)    ((a) > (b)) ? (b) : (a)
@@ -159,7 +159,7 @@ extern IRQType isr2_list[NUM_ISR2];
  * 'std_ret' must be defined in the calling function locally
  * before using this macro.
  *
- * param[in] tid
+ * @param[in] tid
  *   Task ID
  */
 #define ValidateTaskID(tid)  do {         \
@@ -180,7 +180,7 @@ extern IRQType isr2_list[NUM_ISR2];
  * 'std_ret' must be defined in the calling function locally
  * before using this macro.
  *
- * param[in] alarm
+ * @param[in] alarm
  *   Alarm ID of type AlarmType
  */
 #define ValidateAlarm(alarm)  do {        \
@@ -201,7 +201,7 @@ extern IRQType isr2_list[NUM_ISR2];
  * 'std_ret' must be defined in the calling function locally
  * before using this macro.
  *
- * param[in] counter
+ * @param[in] counter
  *   Counter ID of type CounterType
  */
 #define ValidateCounter(counter)  do {    \

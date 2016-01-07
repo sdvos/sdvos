@@ -1,0 +1,81 @@
+OIL_VERSION = "2.5";
+
+#include <sdvos.oil>
+
+CPU ARMCortexM4 {
+  OS SHELL_OS {
+    STATUS = EXTENDED;
+    STARTUPHOOK = TRUE;
+    ERRORHOOK = TRUE;
+    SHUTDOWNHOOK = FALSE;
+    PRETASKHOOK = FALSE;
+    POSTTASKHOOK = FALSE;
+    USEGETSERVICEID = TRUE;
+    USEPARAMETERACCESS = TRUE;
+    USERESSCHEDULER = TRUE;
+    DEBUGLEVEL = 2;
+    BOARD = NUCLEOF401RE;
+    //BOARD = LINUX;
+    //BOARD = ARDUINO_UNO;
+    SHELL = TRUE;
+    DRIVER = "uart/stm32f4xx_uart";
+    //DRIVER = "uart/linux_uart";
+    //DRIVER = "uart/atmega328p_uart";
+  };
+
+  APPMODE AppMode0 {
+    DEFAULT = TRUE;
+  };
+
+  APPMODE AppMode1 {
+  };
+
+  TASK shell {
+    PRIORITY = 1;
+    SCHEDULE = FULL;
+    ACTIVATION = 1;
+    AUTOSTART = TRUE {
+      APPMODE = AppMode0;
+      APPMODE = AppMode1;
+    };
+    //STACKSIZE = 0x80;
+    STACKSIZE = 0x100;
+    //STACKSIZE = 4096;
+  };
+
+  TASK task1 {
+    PRIORITY = 2;
+    SCHEDULE = FULL;
+    ACTIVATION = 1;
+    AUTOSTART = TRUE {
+      APPMODE = AppMode0;
+      APPMODE = AppMode1;
+    };
+    //STACKSIZE = 0x80;
+    STACKSIZE = 0x100;
+    //STACKSIZE = 4096;
+  };
+
+  COUNTER SYS_COUNTER {
+    MINCYCLE = 10;
+    MAXALLOWEDVALUE = 0xFFFF;
+    TICKSPERBASE = 1;
+  };
+
+  ALARM ALARM0 {
+    COUNTER = SYS_COUNTER;
+    ACTION = ALARMCALLBACK {
+      ALARMCALLBACKNAME = "ALARM0_CALLBACK";
+    };
+    AUTOSTART = FALSE;
+  };
+
+  ALARM ALARM1 {
+    COUNTER = SYS_COUNTER;
+    ACTION = ACTIVATETASK {
+      TASK = task1;
+    };
+    AUTOSTART = FALSE;
+  };
+};
+

@@ -317,6 +317,8 @@ BOARD              { yylval.i = ATTR_BOARD;
                      return ATTR_BOARD; }
 DRIVER             { yylval.i = ATTR_DRIVER;
                      return ATTR_DRIVER; }
+SHELL              { yylval.i = ATTR_SHELL;
+                     return ATTR_SHELL; }
  /* Task Object */
 PRIORITY           { yylval.i = ATTR_PRIORITY;
                      return ATTR_PRIORITY; }

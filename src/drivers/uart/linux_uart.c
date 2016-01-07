@@ -25,6 +25,26 @@
 #include <sdvos_printf.h>
 #include <stdio.h>
 
+int
+uart_getchar ()
+{
+  int c = 0;
+
+  do {
+    c = getchar ();
+  } while (c == -1);
+
+  return c;
+}
+
+int
+uart_putchar (char c)
+{
+  int ret = putchar (c);
+  fflush (stdout);
+  return ret;
+}
+
 void linux_uart_init (void)
 {
   sdvos_init_printf ((void (*) (char)) putchar);

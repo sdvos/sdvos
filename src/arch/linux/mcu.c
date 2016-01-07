@@ -26,17 +26,29 @@
 #include <arch/linux/task.h>
 #include <ucontext.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <task.h>
 #include <signal.h>
 #include <debug.h>
+#include <termios.h>
+#include <unistd.h>
 
 void * linux_stack_pool = NULL;
+static struct termios termios_old, termios_new;
+
+void
+termios_restore ()
+{
+  tcsetattr (STDIN_FILENO, TCSANOW, &termios_old);
+  exit (0);
+}
 
 void
 McuInit ()
 {
   int i = 0, total_stk = 0;
   sigset_t sigset;
+  struct sigaction act;
 
   /* Disable all signals */
   sigfillset (&sigset);
@@ -56,6 +68,26 @@ McuInit ()
     tasks[i].sp_end = (data_addr_t) linux_stack_pool +
                       ((total_stk + 0xFFF) & 0xFFFFF000) -
                       (SRAM_END - tasks[i].sp_end);
+  }
+
+  if (tcgetattr (STDIN_FILENO, &termios_old) < 0) {
+    exit (1);
+  }
+
+  termios_new = termios_old;
+
+  termios_new.c_iflag &= ~ICRNL;
+  termios_new.c_iflag |= INLCR;
+  termios_new.c_lflag &= ~(ECHO | ECHONL | ICANON);
+
+  tcsetattr (STDIN_FILENO, TCSANOW, &termios_new);
+
+  act.sa_handler = termios_restore;
+  act.sa_flags = 0;
+  sigemptyset (&act.sa_mask);
+
+  if (sigaction (SIGINT, &act, NULL) < 0) {
+    exit (1);
   }
 }
 
