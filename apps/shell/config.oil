@@ -14,11 +14,13 @@ CPU ARMCortexM4 {
     USEPARAMETERACCESS = TRUE;
     USERESSCHEDULER = TRUE;
     DEBUGLEVEL = 2;
-    BOARD = NUCLEOF401RE;
+    //BOARD = NUCLEOF401RE;
+    BOARD = NUCLEOF746ZG;
     //BOARD = LINUX;
     //BOARD = ARDUINO_UNO;
     SHELL = TRUE;
-    DRIVER = "uart/stm32f4xx_uart";
+    //DRIVER = "uart/stm32f4xx_uart";
+    DRIVER = "uart/stm32f7xx_uart";
     //DRIVER = "uart/linux_uart";
     //DRIVER = "uart/atmega328p_uart";
   };

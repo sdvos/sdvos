@@ -67,12 +67,15 @@
 #define SCB_ICSR_NMIPENDSET         ((uint32_t)0x80000000)
 
 /* Bit definition for SCB_CCR register */
-#define SCB_CCR_NONBASETHRDENA      ((uint16_t)0x0001)
-#define SCB_CCR_USERSETMPEND        ((uint16_t)0x0002)
-#define SCB_CCR_UNALIGN_TRP         ((uint16_t)0x0008)
-#define SCB_CCR_DIV_0_TRP           ((uint16_t)0x0010)
-#define SCB_CCR_BFHFNMIGN           ((uint16_t)0x0100)
-#define SCB_CCR_STKALIGN            ((uint16_t)0x0200)
+#define SCB_CCR_BP                  ((uint32_t)(1UL << 18))
+#define SCB_CCR_IC                  ((uint32_t)(1UL << 17))
+#define SCB_CCR_DC                  ((uint32_t)(1UL << 16))
+#define SCB_CCR_STKALIGN            ((uint32_t)(1UL << 9))
+#define SCB_CCR_BFHFNMIGN           ((uint32_t)(1UL << 8))
+#define SCB_CCR_DIV_0_TRP           ((uint32_t)(1UL << 4))
+#define SCB_CCR_UNALIGN_TRP         ((uint32_t)(1UL << 3))
+#define SCB_CCR_USERSETMPEND        ((uint32_t)(1UL << 1))
+#define SCB_CCR_NONBASETHRDENA      ((uint32_t)(1UL))
 
 /* Bit definition for SysTick_CTRL register */
 #define SysTick_CTRL_ENABLE         ((uint32_t)0x00000001)
@@ -127,6 +130,17 @@
 #define FPU_MVFR1_FP_HPFP           (0xFUL << 24)
 #define FPU_MVFR1_D_NaN_mode        (0xFUL << 4)
 #define FPU_MVFR1_FtZ_mode          (0xFUL << 0)
+#endif
+
+#ifdef __USE_CACHE__
+/* SCB Cache Size ID Register */
+#define SCB_CCSIDR_WT               (1UL << 31U)
+#define SCB_CCSIDR_WB               (1UL << 30U)
+#define SCB_CCSIDR_RA               (1UL << 29U)
+#define SCB_CCSIDR_WA               (1UL << 28U)
+#define SCB_CCSIDR_NUMSETS          (0x7FFFUL << 13U)
+#define SCB_CCSIDR_ASSOCIATIVITY    (0x3FFUL << 3U)
+#define SCB_CCSIDR_LINESIZE         (7UL)
 #endif
 
 /**
@@ -200,9 +214,61 @@ typedef struct
   volatile uint32_t MMFR[4];
   /** ISA Feature Register */
   volatile uint32_t ISAR[5];
-  uint32_t RESERVED0[5];
+  uint32_t RESERVED0[1];
+  /** Cache Level ID register */
+  volatile uint32_t CLIDR;
+  /** Cache Type register */
+  volatile uint32_t CTR;
+  /** Cache Size ID Register */
+  volatile uint32_t CCSIDR;
+  /** Cache Size Selection Register */
+  volatile uint32_t CSSELR;
   /** Coprocessor Access Control Register */
   volatile uint32_t CPACR;
+  uint32_t RESERVED3[93];
+  /** Software Triggered Interrupt Register */
+  volatile uint32_t STIR;
+  uint32_t RESERVED4[15];
+  /** Media and VFP Feature Register 0 */
+  volatile uint32_t MVFR0;
+  /** Media and VFP Feature Register 1 */
+  volatile uint32_t MVFR1;
+  /** Media and VFP Feature Register 1 */
+  volatile uint32_t MVFR2;
+  uint32_t RESERVED5[1];
+  /** I-Cache Invalidate All to PoU */
+  volatile uint32_t ICIALLU;
+  uint32_t RESERVED6[1];
+  /** I-Cache Invalidate by MVA to PoU */
+  volatile uint32_t ICIMVAU;
+  /** D-Cache Invalidate by MVA to PoC */
+  volatile uint32_t DCIMVAC;
+  /** D-Cache Invalidate by Set-way */
+  volatile uint32_t DCISW;
+  /** D-Cache Clean by MVA to PoU */
+  volatile uint32_t DCCMVAU;
+  /** D-Cache Clean by MVA to PoC */
+  volatile uint32_t DCCMVAC;
+  /** D-Cache Clean by Set-way */
+  volatile uint32_t DCCSW;
+  /** D-Cache Clean and Invalidate by MVA to PoC */
+  volatile uint32_t DCCIMVAC;
+  /** D-Cache Clean and Invalidate by Set-way */
+  volatile uint32_t DCCISW;
+  uint32_t RESERVED7[6];
+  /** Instruction Tightly-Coupled Memory Control Register */
+  volatile uint32_t ITCMCR;
+  /** Data Tightly-Coupled Memory Control Registers */
+  volatile uint32_t DTCMCR;
+  /** AHBP Control Register */
+  volatile uint32_t AHBPCR;
+  /** L1 Cache Control Register */
+  volatile uint32_t CACR;
+  /** AHB Slave Control Register */
+  volatile uint32_t AHBSCR;
+  uint32_t RESERVED8[1U];
+  /** Auxiliary Bus Fault Status Register */
+  volatile uint32_t ABFSR;
 } SCB_Type;
 
 /**

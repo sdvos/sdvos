@@ -23,6 +23,7 @@
  * @brief  ARMv7-M MCU Initialization
  */
 #include <arch/armv7m/scs.h>
+#include <arch/armv7m/cache.h>
 
 #ifdef __USE_FPU__
 void
@@ -49,6 +50,12 @@ SystemInit ()
 #ifdef __USE_FPU__
   /* Initialize FPU */
   FpuInit ();
+#endif
+#ifdef __USE_CACHE__
+  /* Enable Instruction Cache */
+  SCB_EnableICache ();
+  /* Enable Data Cache */
+  SCB_EnableDCache ();
 #endif
 }
 

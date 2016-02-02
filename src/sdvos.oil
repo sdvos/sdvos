@@ -16,6 +16,7 @@ IMPLEMENTATION SDVOS {
           STM32F4DISCOVERY,
           NUCLEOF401RE,
           NUCLEOF411RE,
+          NUCLEOF746ZG,
           LINUX] BOARD;
     STRING DRIVER[];
   };

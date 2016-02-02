@@ -171,3 +171,27 @@ start_ext_vec = .;
 . = start_ext_vec + 340;
 *(.ext_vec_85)
 . = start_ext_vec + 344;
+*(.ext_vec_86)
+. = start_ext_vec + 348;
+*(.ext_vec_87)
+. = start_ext_vec + 352;
+*(.ext_vec_88)
+. = start_ext_vec + 356;
+*(.ext_vec_89)
+. = start_ext_vec + 360;
+*(.ext_vec_90)
+. = start_ext_vec + 364;
+*(.ext_vec_91)
+. = start_ext_vec + 368;
+*(.ext_vec_92)
+. = start_ext_vec + 372;
+*(.ext_vec_93)
+. = start_ext_vec + 376;
+*(.ext_vec_94)
+. = start_ext_vec + 380;
+*(.ext_vec_95)
+. = start_ext_vec + 384;
+*(.ext_vec_96)
+. = start_ext_vec + 388;
+*(.ext_vec_97)
+. = start_ext_vec + 392;
