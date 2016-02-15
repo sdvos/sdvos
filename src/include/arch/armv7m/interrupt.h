@@ -215,7 +215,8 @@ while (0)
  * only internally during system initialization.
  */
 #define __enable_irq()                               \
-  __asm__ volatile ("cpsie i\n\t")
+  __asm__ volatile ("cpsie i\n\t"                    \
+                    "isb\n\t")
 
 /**
  * @def __set_basepri

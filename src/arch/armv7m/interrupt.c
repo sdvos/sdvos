@@ -25,6 +25,7 @@
 #include <arch/armv7m/interrupt.h>
 #include <arch/armv7m/types.h>
 #include <arch/armv7m/scs.h>
+#include <arch/armv7m/barrier.h>
 #include <config/config.h>
 #include <sdvos.h>
 
@@ -312,6 +313,7 @@ InterruptInit ()
    * IRQ priority =< BASEPRI           N                  N
    */
   SCB->SCR = 0x0;
+  DSB ();
 
   return;
 }

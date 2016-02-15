@@ -22,6 +22,7 @@
  * @author Ye Li (liye@sdvos.org)
  * @brief  Architectural Dependant Idle Loop
  */
+#include <arch/armv7m/barrier.h>
 
 /**
  * @brief Architectural dependant idle loop
@@ -34,6 +35,7 @@ void
 IdleLoop ()
 {
 #ifdef __IDLE_WFI__
+  DSB ();
   while (1) __asm__ volatile ("wfi\n\t");
 #else
   while (1);
