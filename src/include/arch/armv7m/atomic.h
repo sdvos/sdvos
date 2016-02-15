@@ -55,12 +55,12 @@ typedef uint32_t ALIGNED (4) uatomic_t;
   __asm__ volatile ("1:\n\t"                    \
                     "ldrex r0, [%0]\n\t"        \
                     "adds r0, #1\n\t"           \
-                    "strex r0, r0, [%0]\n\t"    \
-                    "cmp r0, #0\n\t"            \
+                    "strex r1, r0, [%0]\n\t"    \
+                    "cmp r1, #0\n\t"            \
                     "bne 1b\n\t"                \
                     :                           \
                     :"l" (v)                    \
-                    :"r0")
+                    :"r0", "r1")
 
 /**
  * @def uatomic_inc(v)
@@ -71,7 +71,7 @@ typedef uint32_t ALIGNED (4) uatomic_t;
  * @param[in] v
  *   Reference to an uatomic type data
  */
-#define uatomic_inc atomic_inc
+#define uatomic_inc(v)  atomic_inc(v)
 
 /**
  * @def atomic_dec(v)
@@ -86,12 +86,12 @@ typedef uint32_t ALIGNED (4) uatomic_t;
   __asm__ volatile ("1:\n\t"                    \
                     "ldrex r0, [%0]\n\t"        \
                     "subs r0, #1\n\t"           \
-                    "strex r0, r0, [%0]\n\t"    \
-                    "cmp r0, #0\n\t"            \
+                    "strex r1, r0, [%0]\n\t"    \
+                    "cmp r1, #0\n\t"            \
                     "bne 1b\n\t"                \
                     :                           \
                     :"l" (v)                    \
-                    :"r0")
+                    :"r0", "r1")
 
 /**
  * @def uatomic_dec(v)
@@ -102,7 +102,7 @@ typedef uint32_t ALIGNED (4) uatomic_t;
  * @param[in] v
  *   Reference to an uatomic type data
  */
-#define uatomic_dec atomic_dec
+#define uatomic_dec(v)  atomic_dec(v)
 
 /**
  * @def atomic_read
