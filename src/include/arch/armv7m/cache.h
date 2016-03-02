@@ -27,13 +27,17 @@
 
 #include <arch/armv7m/scs.h>
 
-/** Number of ways in cache */
+/** Number of ways in cache - 1 */
 #define CCSIDR_WAYS()                                \
     ((SCB->CCSIDR & SCB_CCSIDR_ASSOCIATIVITY) >> 3U)
 
-/** Number of sets in cache */
+/** Number of sets in cache - 1 */
 #define CCSIDR_SETS()                                \
     ((SCB->CCSIDR & SCB_CCSIDR_NUMSETS) >> 13U)
+
+/** Number of bytes in a cache line */
+#define CCSIDR_LINESIZE()                            \
+    ((1 << ((SCB->CCSIDR & SCB_CCSIDR_LINESIZE) + 2)) * 4)
 
 /**
  * @brief Enable instruction cache.

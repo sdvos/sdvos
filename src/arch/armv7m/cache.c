@@ -47,17 +47,17 @@ SCB_EnableDCache (void)
   uint32_t ways;
   uint8_t sw_a = 0, sw_l = 0;
 
+  /* Level 1 data cache */
+  SCB->CSSELR = (0U << 1U) | 0U;
+  DSB ();
+
   /*
    * Calculate A and L offsets for setting registers in
    * cache clean/invalidate operations. See B2.2.7 in the
    * ARMv7M ARM (DDI 0403E.b).
    */
   while ((1 << sw_a) < (CCSIDR_WAYS () + 1)) sw_a++;
-  while ((1 << sw_l) < (CCSIDR_SETS () + 1)) sw_l++;
-
-  /* Level 1 data cache */
-  SCB->CSSELR = (0U << 1U) | 0U;
-  DSB ();
+  while ((1 << sw_l) < CCSIDR_LINESIZE ()) sw_l++;
 
   /* Invalidate D-Cache */
   sets = CCSIDR_SETS ();
@@ -96,20 +96,20 @@ SCB_DisableDCache (void)
   uint32_t ways;
   uint8_t sw_a = 0, sw_l = 0;
 
-  /*
-   * Calculate A and L offsets for setting registers in
-   * cache clean/invalidate operations. See B2.2.7 in the
-   * ARMv7M ARM (DDI 0403E.b).
-   */
-  while ((1 << sw_a) < (CCSIDR_WAYS () + 1)) sw_a++;
-  while ((1 << sw_l) < (CCSIDR_SETS () + 1)) sw_l++;
-
   /* Level 1 data cache */
   SCB->CSSELR = (0U << 1U) | 0U;
   DSB ();
 
   /* Disable D-Cache */
   SCB->CCR &= ~SCB_CCR_DC;
+
+  /*
+   * Calculate A and L offsets for setting registers in
+   * cache clean/invalidate operations. See B2.2.7 in the
+   * ARMv7M ARM (DDI 0403E.b).
+   */
+  while ((1 << sw_a) < (CCSIDR_WAYS () + 1)) sw_a++;
+  while ((1 << sw_l) < CCSIDR_LINESIZE ()) sw_l++;
 
   /* clean & Invalidate D-Cache */
   sets = CCSIDR_SETS ();
