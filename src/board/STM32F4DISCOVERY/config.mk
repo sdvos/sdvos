@@ -1,5 +1,6 @@
 # Board Specific Configuration for STM32F4DISCOVERY
-CFG += -D__ARCH_ARMV7M__
+-include arch/armv7m/config.mk
+
 # 64K CCM, 112K+16K contiguous on AHB, 4K battery
 CFG += -DARCH_SRAM_END=0x20020000
 CFG += -DKERN_STK_SIZE=0x100
@@ -10,16 +11,6 @@ CFG += -D__USE_FPU__
 #CFG += -D__IDLE_WFI__
 
 # Objects specific for STM32F4DISCOVERY
-OBJ += arch/armv7m/task.o
-OBJ += arch/armv7m/panic.o
-OBJ += arch/armv7m/interrupt.o
-OBJ += arch/armv7m/syscall.o
-OBJ += arch/armv7m/timer.o
-OBJ += arch/armv7m/idle.o
-OBJ += arch/armv7m/utils.o
-OBJ += arch/armv7m/start.o
-OBJ += arch/armv7m/svc.o
-OBJ += arch/armv7m/mcu.o
 # OBJ += drivers/uart/stm32f4xx_uart.o
 OBJ += board/STM32F4DISCOVERY/board.o
 

@@ -1,0 +1,3 @@
+These are the board configuration files for the Atmega328p breakout
+board. Use this board only if you just want to program an Atmega328p
+chip without external oscillator (i.e. Using the 1MHz internal clock).

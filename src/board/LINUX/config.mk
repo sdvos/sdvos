@@ -5,7 +5,7 @@ CFG += -DARCH_SRAM_END=0x20000000
 CFG += -DKERN_STK_SIZE=0x0
 CFG += -DIDLE_STK_SIZE=0x1000
 
-# Objects specific for Arduino UNO
+# Objects specific for Linux
 OBJ += arch/linux/task.o
 OBJ += arch/linux/panic.o
 OBJ += arch/linux/interrupt.o

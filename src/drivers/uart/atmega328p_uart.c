@@ -25,7 +25,12 @@
 #include "atmega328p_uart.h"
 #include <sdvos_printf.h>
 
-#define BAUD 38400
+#ifdef TERM_BAUD
+#define BAUD TERM_BAUD
+#else
+#define BAUD 38400UL
+#endif
+
 #define BAUD_TOL 2
 
 #define UBRR (((F_CPU) + 8UL * (BAUD)) / (16UL * (BAUD)) -1UL)

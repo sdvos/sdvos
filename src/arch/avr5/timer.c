@@ -54,8 +54,17 @@ ArchTimerInit ()
    * | 256       |  1     0     0    |
    * | 1024      |  1     0     1    |
    * ---------------------------------
+   *
+   * For 1MHz Internal Oscillator:
+   *
+   * --------------------------------
+   * | OCR1A  |  Prescale  |  Tick  |
+   * --------------------------------
+   * | 125    |  8         |  1ms   |
+   * ---------------------------------
    */
 
+#if F_CPU == 16000000UL
   /* set compare match register to desired timer count */
   OCR1A = 250;
   /* turn on CTC mode */
@@ -64,6 +73,18 @@ ArchTimerInit ()
   TIMSK1 = (1 << OCIE1A);
   /* Set prescale */
   TCCR1B |= (1 << CS11) | (1 << CS10);
+#elif F_CPU == 1000000UL
+  /* set compare match register to desired timer count */
+  OCR1A = 125;
+  /* turn on CTC mode */
+  TCCR1B |= (1 << WGM12);
+  /* Enable Timer Compare Interrupt */
+  TIMSK1 = (1 << OCIE1A);
+  /* Set prescale */
+  TCCR1B |= (1 << CS11);
+#else
+#error F_CPU not supported!
+#endif
 }
 
 /*

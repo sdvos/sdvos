@@ -1,5 +1,6 @@
 # Board Specific Configuration for NUCLEOF746ZG
-CFG += -D__ARCH_ARMV7M__
+-include arch/armv7m/config.mk
+
 CFG += -DARCH_SRAM_END=0x20050000
 CFG += -DKERN_STK_SIZE=0x100
 CFG += -DIDLE_STK_SIZE=0x100
@@ -11,17 +12,6 @@ CFG += -D__USE_CACHE__
 #CFG += -D__IDLE_WFI__
 
 # Objects specific for NUCLEOF746ZG
-OBJ += arch/armv7m/task.o
-OBJ += arch/armv7m/panic.o
-OBJ += arch/armv7m/interrupt.o
-OBJ += arch/armv7m/syscall.o
-OBJ += arch/armv7m/timer.o
-OBJ += arch/armv7m/idle.o
-OBJ += arch/armv7m/utils.o
-OBJ += arch/armv7m/start.o
-OBJ += arch/armv7m/svc.o
-OBJ += arch/armv7m/mcu.o
-OBJ += arch/armv7m/cache.o
 OBJ += board/NUCLEOF746ZG/board.o
 
 # Tool Chain Flags and Defs

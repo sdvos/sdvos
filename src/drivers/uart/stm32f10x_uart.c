@@ -25,7 +25,12 @@
 #include <sdvos_printf.h>
 #include <board.h>
 
-#define BAUD 38400
+#ifdef TERM_BAUD
+#define BAUD TERM_BAUD
+#else
+#define BAUD 38400UL
+#endif
+
 extern uint32_t APB2Clock;
 
 int

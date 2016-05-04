@@ -22,6 +22,7 @@
  * @author Ye Li (liye@sdvos.org)
  * @brief  ARMv7-M Cache Management
  */
+#ifdef __USE_CACHE__
 #include <arch/armv7m/barrier.h>
 #include <arch/armv7m/types.h>
 #include <arch/armv7m/cache.h>
@@ -124,5 +125,6 @@ SCB_DisableDCache (void)
   DSB ();
   ISB ();
 }
+#endif /* __USE_CACHE__ */
 
 /* vi: set et ai sw=2 sts=2: */

@@ -1,5 +1,6 @@
 # Board Specific Configuration for NUCLEOF401RE
-CFG += -D__ARCH_ARMV7M__
+-include arch/armv7m/config.mk
+
 CFG += -DARCH_SRAM_END=0x20018000
 CFG += -DKERN_STK_SIZE=0x100
 CFG += -DIDLE_STK_SIZE=0x100
@@ -9,16 +10,6 @@ CFG += -D__USE_FPU__
 #CFG += -D__IDLE_WFI__
 
 # Objects specific for NUCLEOF401RE
-OBJ += arch/armv7m/task.o
-OBJ += arch/armv7m/panic.o
-OBJ += arch/armv7m/interrupt.o
-OBJ += arch/armv7m/syscall.o
-OBJ += arch/armv7m/timer.o
-OBJ += arch/armv7m/idle.o
-OBJ += arch/armv7m/utils.o
-OBJ += arch/armv7m/start.o
-OBJ += arch/armv7m/svc.o
-OBJ += arch/armv7m/mcu.o
 # OBJ += drivers/usart/stm32f4xx_usart.o
 OBJ += board/NUCLEOF401RE/board.o
 

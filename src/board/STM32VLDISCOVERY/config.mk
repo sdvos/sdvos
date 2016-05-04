@@ -1,20 +1,11 @@
 # Board Specific Configuration for STM32VLDISCOVERY
-CFG += -D__ARCH_ARMV7M__
+-include arch/armv7m/config.mk
+
 CFG += -DARCH_SRAM_END=0x20002000
 CFG += -DKERN_STK_SIZE=0x100
 CFG += -DIDLE_STK_SIZE=0x100
 
 # Objects specific for STM32VLDISCOVERY
-OBJ += arch/armv7m/task.o
-OBJ += arch/armv7m/panic.o
-OBJ += arch/armv7m/interrupt.o
-OBJ += arch/armv7m/syscall.o
-OBJ += arch/armv7m/timer.o
-OBJ += arch/armv7m/idle.o
-OBJ += arch/armv7m/utils.o
-OBJ += arch/armv7m/start.o
-OBJ += arch/armv7m/svc.o
-OBJ += arch/armv7m/mcu.o
 # OBJ += drivers/uart/stm32f10x_uart.o
 OBJ += board/STM32VLDISCOVERY/board.o
 
