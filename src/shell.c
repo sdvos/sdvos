@@ -241,20 +241,6 @@ uart_getline ()
 }
 
 /**
- * @brief Internal function that prints shell banner
- */
-static void
-print_shell_banner ()
-{
-  sdvos_printf ("+----------------------------------------------+\n");
-  sdvos_printf ("| Standard Dependable Vehicle Operating System |\n");
-  sdvos_printf ("|  Copyright (C) 2015 Ye Li (liye@sdvos.org)   |\n");
-  sdvos_printf ("|           Simple Embedded Shell              |\n");
-  sdvos_printf ("+----------------------------------------------+\n");
-  sdvos_printf ("\n");
-}
-
-/**
  * @brief Input line parser
  *
  * This function parses the input line from uart_getline.
@@ -314,9 +300,6 @@ TASK (shell)
   int i = 0;
   char * argv[MAX_ARGC];
   int argc = 0;
-
-  sdvos_printf ("\n");
-  print_shell_banner ();
 
   for (;;) {
     sdvos_printf ("Sesh# ");
