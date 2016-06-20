@@ -7,12 +7,12 @@
  * modify it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -131,7 +131,7 @@ sdvos_itoa (int value, char * buf)
 static unsigned char
 to_digit (char ch)
 {
-  if (ch >= '0' && ch <= '9') 
+  if (ch >= '0' && ch <= '9')
     return ch - '0';
   else if (ch >= 'a' && ch <= 'f')
     return ch- 'a' + 10;
@@ -263,15 +263,15 @@ sdvos_vprintf (void (* putc_fun) (char **, char), char ** out_buf,
           put_buf (putc_fun, out_buf, buf, width);
           break;
         case 'x' :
-        case 'X' : 
+        case 'X' :
           sdvos_uitoa (va_arg (va, unsigned int), 16,
                        ((ch == 'X') ? 1 : 0), buf);
           put_buf (putc_fun, out_buf, buf, width);
           break;
-        case 'c' : 
+        case 'c' :
           putc_fun (out_buf, (char) (va_arg (va, int)));
           break;
-        case 's' : 
+        case 's' :
           put_buf (putc_fun, out_buf,
                    va_arg (va, char *), width);
           break;

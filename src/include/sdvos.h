@@ -7,12 +7,12 @@
  * modify it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -267,7 +267,7 @@ void panic (void);
 
 /**
  * @brief Architectural dependent function of task switch.
- * 
+ *
  * Execution context of source task will be preserved
  * in its TCB. This function returns when the calling
  * task gets re-scheduled.
@@ -308,7 +308,7 @@ void SwitchTask (TCB * src, TCB * dst);
  *   Floor of the priority segment
  * @return
  *   None
- */ 
+ */
 void NextTask (TaskRefType tid_ref, PrioType max,
                PrioType min);
 
@@ -327,7 +327,7 @@ void NextTask (TaskRefType tid_ref, PrioType max,
  */
 void InitTask (TCB * task);
 
-/** 
+/**
  * @brief Schedule the next highest priority ready task.
  *
  * JumpNext finds the next available highest priority
@@ -514,7 +514,7 @@ StatusType Sys_GetTaskID (TaskRefType tid_ref);
  *   (Standard) No error
  * @retval E_OS_ID
  *   (Extended) Task tid is invalid
- */ 
+ */
 StatusType Sys_GetTaskState (TaskType tid,
                              TaskStateRefType state_ref);
 

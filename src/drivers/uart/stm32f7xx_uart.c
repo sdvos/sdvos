@@ -7,12 +7,12 @@
  * modify it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -31,7 +31,7 @@
 #define BAUD 38400UL
 #endif
 
-extern uint32_t APB1Clock; 
+extern uint32_t APB1Clock;
 
 int
 uart_putchar (char c)
@@ -79,7 +79,7 @@ void stm32f7xx_uart_init (void)
   USART3->CR3 = 0;
 
   /* Set up BRR (OVER8=0) */
-  mantissa = ((25 * APB1Clock) / (4 * BAUD));    
+  mantissa = ((25 * APB1Clock) / (4 * BAUD));
   brr = (mantissa / 100) << 4;
   frac = mantissa - (100 * (brr >> 4));
   brr |= (((((frac * 16) + 50) / 100)) & 0xF);

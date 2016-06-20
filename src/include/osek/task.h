@@ -7,12 +7,12 @@
  * modify it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -60,12 +60,12 @@
 /**
  * @def TASK(TaskName)
  * @brief Defines an OSEK task
- * 
+ *
  * With the macro TASK the user may use the same name for
  * "task identification" and "name of task function". The
  * task identification will be generated from the TaskName
  * by prefixing an "Func" to it.
- * 
+ *
  * @param[in] TaskName
  *   Name of the task function
  */
@@ -203,8 +203,8 @@ StatusType ChainTask (TaskType tid);
  * For these tasks, Schedule enables a processor assignment
  * to other tasks with lower or equal priority than the
  * ceiling priority of the internal resource and higher
- * priority than the priority of the calling task in 
- * application-specific locations. When returning from 
+ * priority than the priority of the calling task in
+ * application-specific locations. When returning from
  * Schedule, the internal resource has been taken again.
  * This service has no influence on tasks with no internal
  * resource assigned (preemptable tasks).
@@ -267,7 +267,7 @@ StatusType GetTaskID (TaskRefType tid_ref);
  *   (Standard) No error
  * @retval E_OS_ID
  *   (Extended) Task tid is invalid
- */ 
+ */
 StatusType GetTaskState (TaskType tid, TaskStateRefType state_ref);
 
 #endif

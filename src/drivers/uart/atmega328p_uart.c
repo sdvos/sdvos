@@ -7,12 +7,12 @@
  * modify it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -82,7 +82,7 @@ atmega328p_uart_init (void)
   UCSR0A &= ~(1 << U2X0);
 #endif
 
-  UCSR0C = (1 << UCSZ01) | (1 << UCSZ00); /* 8-bit data */ 
+  UCSR0C = (1 << UCSZ01) | (1 << UCSZ00); /* 8-bit data */
   UCSR0B = (1 << RXEN0) | (1 << TXEN0);   /* Enable RX and TX */
 
   sdvos_init_printf ((void (*) (char)) uart_putchar);

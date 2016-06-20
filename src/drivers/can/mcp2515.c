@@ -7,12 +7,12 @@
  * modify it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -73,7 +73,7 @@ extern uint32_t APB1Clock;
   LoopDelay (10)
 
 static void
-mcp2515_reset (void)                                      
+mcp2515_reset (void)
 {
   MCP2515_SELECT ();
   spi_readwrite (MCP_RESET);
@@ -96,13 +96,13 @@ static uint8_t
 mcp2515_readRegister (const uint8_t address)
 {
   uint8_t ret;
-  
+
   MCP2515_SELECT ();
   spi_readwrite (MCP_READ);
   spi_readwrite (address);
   ret = spi_read ();
   MCP2515_UNSELECT ();
-  
+
   return ret;
 }
 
@@ -126,7 +126,7 @@ mcp2515_setRegisterS (const uint8_t address, const uint8_t values[],
   MCP2515_SELECT ();
   spi_readwrite (MCP_WRITE);
   spi_readwrite (address);
-     
+
   for (i=0; i<n; i++) {
     spi_readwrite (values[i]);
   }
@@ -156,21 +156,21 @@ mcp2515_readRegisterS (const uint8_t address, uint8_t values[],
                        const uint8_t n)
 {
   uint8_t i;
-  
+
   MCP2515_SELECT ();
-  
+
   spi_readwrite (MCP_READ);
   spi_readwrite (address);
-  
+
   for (i = 0; i < n; i++) {
     values[i] = spi_read ();
   }
-  
+
   MCP2515_UNSELECT ();
 }
 
 static uint8_t
-mcp2515_configRate (const uint8_t canSpeed)            
+mcp2515_configRate (const uint8_t canSpeed)
 {
   uint8_t set, cfg1, cfg2, cfg3;
 
@@ -194,7 +194,7 @@ mcp2515_configRate (const uint8_t canSpeed)
     cfg2 = MCP_16MHz_20kBPS_CFG2;
     cfg3 = MCP_16MHz_20kBPS_CFG3;
     break;
-    
+
     case (CAN_40KBPS):
     cfg1 = MCP_16MHz_40kBPS_CFG1;
     cfg2 = MCP_16MHz_40kBPS_CFG2;
@@ -242,7 +242,7 @@ mcp2515_configRate (const uint8_t canSpeed)
     cfg2 = MCP_16MHz_500kBPS_CFG2;
     cfg3 = MCP_16MHz_500kBPS_CFG3;
     break;
-    
+
     default:
     set = 0;
     break;
@@ -359,7 +359,7 @@ mcp2515_write_canMsg (const uint8_t buffer_sidh_addr,
   mcp_addr = buffer_sidh_addr;
   mcp2515_setRegisterS (mcp_addr + 5, m_nDta, m_nDlc);
   if (m_nRtr == 1) {
-    m_nDlc |= MCP_RTR_MASK;  
+    m_nDlc |= MCP_RTR_MASK;
   }
 
   /* write the RTR and DLC */
@@ -388,7 +388,7 @@ CanSendMsg (uint32_t id, uint8_t ext,
     uiTimeOut++;
   } while (res == MCP_ALLTXBUSY && (uiTimeOut < TIMEOUTVALUE));
 
-  if (uiTimeOut == TIMEOUTVALUE) {   
+  if (uiTimeOut == TIMEOUTVALUE) {
     return CAN_TX_STATUS_NOMAILBOX;
   }
 
@@ -397,10 +397,10 @@ CanSendMsg (uint32_t id, uint8_t ext,
   mcp2515_start_transmit (txbuf_n);
 
   do {
-    uiTimeOut++;        
+    uiTimeOut++;
     res1= mcp2515_readRegister (txbuf_n);
-    res1 = res1 & 0x08;                               		
-  } while(res1 && (uiTimeOut < TIMEOUTVALUE));   
+    res1 = res1 & 0x08;
+  } while(res1 && (uiTimeOut < TIMEOUTVALUE));
 
   if (uiTimeOut == TIMEOUTVALUE) {
     return 2;
@@ -527,15 +527,15 @@ mcp2515_read_canMsg (const uint8_t buffer_sidh_addr, CanMsgType * CanMsg)
 }
 
 static uint8_t
-mcp2515_readStatus (void)                             
+mcp2515_readStatus (void)
 {
   uint8_t status;
-  
+
   MCP2515_SELECT ();
   spi_readwrite (MCP_READ_STATUS);
   status = spi_read ();
   MCP2515_UNSELECT ();
-  
+
   return status;
 }
 

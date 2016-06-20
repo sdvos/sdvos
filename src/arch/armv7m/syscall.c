@@ -7,12 +7,12 @@
  * modify it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -214,7 +214,7 @@ GetTaskState (TaskType tid, TaskStateRefType state_ref)
                       :"=l" (ret)
                       :"l" (tid), "l" (state_ref),
                        "I" (SVC_NO_GETTASKSTATE)
-                      :"r0", "r1"); 
+                      :"r0", "r1");
   }
   return ret;
 }
@@ -345,7 +345,7 @@ SetEvent (TaskType tid, EventMaskType mask)
                       :"=l" (ret)
                       :"l" (tid), "l" (mask),
                        "I" (SVC_NO_SETEVENT)
-                      :"r0", "r1"); 
+                      :"r0", "r1");
   }
   return ret;
 }
@@ -381,7 +381,7 @@ GetEvent (TaskType tid, EventMaskRefType event)
                       :"=l" (ret)
                       :"l" (tid), "l" (event),
                        "I" (SVC_NO_GETEVENT)
-                      :"r0", "r1"); 
+                      :"r0", "r1");
   }
   return ret;
 }
@@ -417,7 +417,7 @@ GetAlarmBase (AlarmType alarm, AlarmBaseRefType info)
                       :"=l" (ret)
                       :"l" (alarm), "l" (info),
                        "I" (SVC_NO_GETALARMBASE)
-                      :"r0", "r1"); 
+                      :"r0", "r1");
   }
   return ret;
 }
@@ -436,7 +436,7 @@ GetAlarm (AlarmType alarm, TickRefType tick)
                       :"=l" (ret)
                       :"l" (alarm), "l" (tick),
                        "I" (SVC_NO_GETALARM)
-                      :"r0", "r1"); 
+                      :"r0", "r1");
   }
   return ret;
 }
@@ -456,7 +456,7 @@ SetRelAlarm (AlarmType alarm, TickType inc, TickType cycle)
                       :"=l" (ret)
                       :"l" (alarm), "l" (inc), "l" (cycle),
                        "I" (SVC_NO_SETRELALARM)
-                      :"r0", "r1", "r2"); 
+                      :"r0", "r1", "r2");
   }
   return ret;
 }
@@ -476,7 +476,7 @@ SetAbsAlarm (AlarmType alarm, TickType start, TickType cycle)
                       :"=l" (ret)
                       :"l" (alarm), "l" (start), "l" (cycle),
                        "I" (SVC_NO_SETABSALARM)
-                      :"r0", "r1", "r2"); 
+                      :"r0", "r1", "r2");
   }
   return ret;
 }
@@ -560,7 +560,7 @@ GetCounterValue (CounterType CounterID, TickRefType Value)
                       :"=l" (ret)
                       :"l" (CounterID), "l" (Value),
                        "I" (SVC_NO_GETCOUNTERVALUE)
-                      :"r0", "r1"); 
+                      :"r0", "r1");
   }
   return ret;
 }
@@ -582,7 +582,7 @@ GetElapsedValue (CounterType CounterID, TickRefType Value,
                       :"l" (CounterID), "l" (Value),
                        "l" (ElapsedValue),
                        "I" (SVC_NO_GETELAPSEDVALUE)
-                      :"r0", "r1", "r2"); 
+                      :"r0", "r1", "r2");
   }
   return ret;
 }
@@ -603,7 +603,7 @@ StartScheduleTableRel (ScheduleTableType ScheduleTableID,
                       :"=l" (ret)
                       :"l" (ScheduleTableID), "l" (Offset),
                        "I" (SVC_NO_STARTSCHEDULETABLEREL)
-                      :"r0", "r1"); 
+                      :"r0", "r1");
   }
   return ret;
 }
@@ -623,7 +623,7 @@ StartScheduleTableAbs (ScheduleTableType ScheduleTableID,
                       :"=l" (ret)
                       :"l" (ScheduleTableID), "l" (Start),
                        "I" (SVC_NO_STARTSCHEDULETABLEABS)
-                      :"r0", "r1"); 
+                      :"r0", "r1");
   }
   return ret;
 }
@@ -663,7 +663,7 @@ NextScheduleTable (ScheduleTableType ScheduleTableID_From,
                       :"l" (ScheduleTableID_From),
                        "l" (ScheduleTableID_To),
                        "I" (SVC_NO_NEXTSCHEDULETABLE)
-                      :"r0", "r1"); 
+                      :"r0", "r1");
   }
   return ret;
 }
@@ -686,7 +686,7 @@ GetScheduleTableStatus (
                       :"l" (ScheduleTableID),
                        "l" (ScheduleStatus),
                        "I" (SVC_NO_GETSCHEDULETABLESTATUS)
-                      :"r0", "r1"); 
+                      :"r0", "r1");
   }
   return ret;
 }
@@ -725,7 +725,7 @@ SyncScheduleTable (ScheduleTableType ScheduleTableID,
                       :"=l" (ret)
                       :"l" (ScheduleTableID), "l" (Value),
                        "I" (SVC_NO_SYNCSCHEDULETABLE)
-                      :"r0", "r1"); 
+                      :"r0", "r1");
   }
   return ret;
 }

@@ -7,12 +7,12 @@
  * modify it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -171,7 +171,7 @@ void
 NVIC_EnableIRQ (IRQType n)
 {
   NVIC->ISER[((uint32_t)(n) >> 5)] =
-    (1 << ((uint32_t)(n) & 0x1F)); 
+    (1 << ((uint32_t)(n) & 0x1F));
 }
 
 void
@@ -300,7 +300,7 @@ InterruptInit ()
     NVIC_EnableIRQ (isr2_list[i]);
 
   /*
-   * Initialize system sleep mode 
+   * Initialize system sleep mode
    * No SEVONPEND, no SLEEPDEEP, no SLEEPONEXIT
    *
    * WFI Behavior                 Wake Up     IRQ Execution

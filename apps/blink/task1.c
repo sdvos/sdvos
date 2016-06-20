@@ -19,7 +19,7 @@ TASK (task1)
   if (LEDMode == 1) {
     GPIODigitalToggle (A, 5);
   }
- 
+
   TerminateTask ();
 
   return E_OK;
@@ -30,7 +30,7 @@ TASK (task2)
   if (LEDMode == 2) {
     GPIODigitalToggle (A, 5);
   }
- 
+
   TerminateTask ();
 
   return E_OK;

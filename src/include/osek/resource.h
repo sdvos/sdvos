@@ -7,12 +7,12 @@
  * modify it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -51,7 +51,7 @@
  *
  * The OSEK priority ceiling protocol for resource
  * management is described in chapter 8.5.
- * 
+ *
  * Nested resource occupation is only allowed if the inner
  * critical sections are completely executed within the
  * surrounding critical section (strictly stacked, see
@@ -95,7 +95,7 @@ StatusType GetResource (ResourceType rid);
  * For information on nesting conditions, see particularities
  * of GetResource. The service may be called from an ISR and
  * from task level.
- * 
+ *
  * Conformance:
  *   BCC1, BCC2, ECC1, ECC2
  *
