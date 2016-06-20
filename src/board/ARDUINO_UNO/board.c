@@ -22,7 +22,7 @@
  * @author Ye Li (liye@sdvos.org)
  * @brief Arduino UNO board specific configuration
  */
-#include <arch/avr5/types.h>
+#include <arch/avr/types.h>
 
 /** Constant that makes delay_loop delay 1 ms */
 #define CONST_LOOPS 1000

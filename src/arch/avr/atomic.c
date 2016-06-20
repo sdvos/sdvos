@@ -18,16 +18,31 @@
  */
 
 /**
- * @file   src/arch/avr5/interrupt.c
+ * @file   src/arch/avr/atomic.c
  * @author Ye Li (liye@sdvos.org)
- * @brief  AVR5 Interrupt Management
+ * @brief  AVR Atomic Operations
  */
-#include <arch/avr5/interrupt.h>
+#include <arch/avr/atomic.h>
+#include <arch/avr/mcu.h>
 
-void
-InterruptInit ()
+atomic_t
+atomic_read (atomic_t * v)
 {
-  /* Nothing to do */
+  atomic_t ret;
+  EnterExcl ();
+  ret = *v;
+  ExitExcl ();
+  return ret;
+}
+
+uatomic_t
+uatomic_read (uatomic_t * v)
+{
+  uatomic_t ret;
+  EnterExcl ();
+  ret = *v;
+  ExitExcl ();
+  return ret;
 }
 
 /* vi: set et ai sw=2 sts=2: */

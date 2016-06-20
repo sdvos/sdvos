@@ -1,7 +1,7 @@
 /*
  *         Standard Dependable Vehicle Operating System
  *
- * Copyright (C) 2015 Ye Li (liye@sdvos.org)
+ * Copyright (C) 2016 Ye Li (liye@sdvos.org)
  *
  * This program is free software: you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -18,31 +18,19 @@
  */
 
 /**
- * @file   src/arch/avr5/atomic.c
+ * @file   src/include/arch/avr/task.h
  * @author Ye Li (liye@sdvos.org)
- * @brief  AVR5 Atomic Operations
+ * @brief  AVR Task Management Utility
  */
-#include <arch/avr5/atomic.h>
-#include <arch/avr5/mcu.h>
+#ifndef _AVR_TASK_H_
+#define _AVR_TASK_H_
 
-atomic_t
-atomic_read (atomic_t * v)
-{
-  atomic_t ret;
-  EnterExcl ();
-  ret = *v;
-  ExitExcl ();
-  return ret;
-}
+#ifdef __ARCH_AVR5__
+#include <arch/avr5/task.h>
+#elif defined __ARCH_AVR6__
+#include <arch/avr6/task.h>
+#endif
 
-uatomic_t
-uatomic_read (uatomic_t * v)
-{
-  uatomic_t ret;
-  EnterExcl ();
-  ret = *v;
-  ExitExcl ();
-  return ret;
-}
+#endif
 
 /* vi: set et ai sw=2 sts=2: */

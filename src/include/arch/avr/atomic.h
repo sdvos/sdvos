@@ -18,14 +18,14 @@
  */
 
 /**
- * @file   src/include/arch/avr5/atomic.h
+ * @file   src/include/arch/avr/atomic.h
  * @author Ye Li (liye@sdvos.org)
- * @brief  AVR5 Atomic Operations
+ * @brief  AVR Atomic Operations
  */
-#ifndef _LINUX_ATOMIC_H_
-#define _LINUX_ATOMIC_H_
+#ifndef _AVR_ATOMIC_H_
+#define _AVR_ATOMIC_H_
 
-#include <arch/avr5/types.h>
+#include <arch/avr/types.h>
 #include <cc.h>
 
 /* Signed atomic data type */

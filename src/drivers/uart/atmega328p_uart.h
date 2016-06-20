@@ -26,7 +26,7 @@
 #ifndef _ATMEGA328P_USART_H_
 #define _ATMEGA328P_USART_H_
 
-#include <arch/avr5/types.h>
+#include <arch/avr/types.h>
 
 /**
  * @def _TO_DATA

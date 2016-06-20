@@ -18,12 +18,12 @@
  */
 
 /**
- * @file   src/arch/avr5/utils.c
+ * @file   src/arch/avr/utils.c
  * @author Ye Li (liye@sdvos.org)
- * @brief  AVR5 Memory Utilities
+ * @brief  AVR Memory Utilities
  */
 
-#include <arch/avr5/utils.h>
+#include <arch/avr/utils.h>
 
 void
 sdvos_memcpy (void * dst, void * src, udata_word_t count)

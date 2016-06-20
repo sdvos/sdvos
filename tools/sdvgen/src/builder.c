@@ -1970,8 +1970,8 @@ generate_code ()
   PRT_CFGH ("\n");
   PRT_CFGH ("#ifdef __ARCH_I386__\n");
   PRT_CFGH ("#include <arch/i386/types.h>\n");
-  PRT_CFGH ("#elif defined __ARCH_AVR5__\n");
-  PRT_CFGH ("#include <arch/avr5/types.h>\n");
+  PRT_CFGH ("#elif defined __ARCH_AVR5__ || defined __ARCH_AVR6__\n");
+  PRT_CFGH ("#include <arch/avr/types.h>\n");
   PRT_CFGH ("#elif defined __ARCH_ARMV7M__\n");
   PRT_CFGH ("#include <arch/armv7m/types.h>\n");
   PRT_CFGH ("#elif defined __ARCH_LINUX__\n");

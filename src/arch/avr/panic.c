@@ -18,12 +18,12 @@
  */
 
 /**
- * @file   src/arch/avr5/panic.c
+ * @file   src/arch/avr/panic.c
  * @author Ye Li (liye@sdvos.org)
- * @brief  AVR5 panic
+ * @brief  AVR panic
  */
-#include <arch/avr5/utils.h>
-#include <arch/avr5/types.h>
+#include <arch/avr/utils.h>
+#include <arch/avr/types.h>
 #include <debug.h>
 
 /*

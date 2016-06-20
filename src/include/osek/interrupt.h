@@ -25,8 +25,8 @@
 #ifndef _OSEK_INTERRUPT_H_
 #define _OSEK_INTERRUPT_H_
 
-#ifdef __ARCH_AVR5__
-#include <arch/avr5/interrupt.h>
+#if defined __ARCH_AVR5__ || defined __ARCH_AVR6__
+#include <arch/avr/interrupt.h>
 #elif defined __ARCH_I386__
 #include <arch/i386/interrupt.h>
 #elif defined __ARCH_ARMV7M__

@@ -34,10 +34,10 @@
 #include <arch/i386/mcu.h>
 #include <arch/i386/task.h>
 #include <arch/i386/atomic.h>
-#elif defined __ARCH_AVR5__
-#include <arch/avr5/mcu.h>
-#include <arch/avr5/task.h>
-#include <arch/avr5/atomic.h>
+#elif defined __ARCH_AVR5__ || defined __ARCH_AVR6__
+#include <arch/avr/mcu.h>
+#include <arch/avr/task.h>
+#include <arch/avr/atomic.h>
 #elif defined __ARCH_ARMV7M__
 #include <arch/armv7m/mcu.h>
 #include <arch/armv7m/task.h>

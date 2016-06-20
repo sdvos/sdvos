@@ -18,14 +18,14 @@
  */
 
 /**
- * @file   src/include/arch/avr5/utils.h
+ * @file   src/include/arch/avr/utils.h
  * @author Ye Li (liye@sdvos.org)
- * @brief  AVR5 Memory Utilities
+ * @brief  AVR Memory Utilities
  */
-#ifndef _AVR5_UTILS_H_
-#define _AVR5_UTILS_H_
+#ifndef _AVR_UTILS_H_
+#define _AVR_UTILS_H_
 
-#include <arch/avr5/types.h>
+#include <arch/avr/types.h>
 
 /**
  * @brief Copy content in memory.

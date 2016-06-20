@@ -25,8 +25,8 @@
 #ifndef _AVR5_TASK_H_
 #define _AVR5_TASK_H_
 
-#include <arch/avr5/types.h>
-#include <arch/avr5/utils.h>
+#include <arch/avr/types.h>
+#include <arch/avr/utils.h>
 #include <task.h>
 
 /**

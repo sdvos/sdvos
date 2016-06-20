@@ -18,30 +18,19 @@
  */
 
 /**
- * @file   src/arch/avr5/idle.c
+ * @file   src/include/arch/avr/vector.h
  * @author Ye Li (liye@sdvos.org)
- * @brief  Architectural Dependant Idle Loop
+ * @brief  AVR Interrupt Vectors
  */
-#include <arch/avr5/io.h>
+#ifndef _AVR_VECTOR_H_
+#define _AVR_VECTOR_H_
 
-/**
- * @brief Architectural dependant idle loop
- *
- * For AVR5, we want to put the processor into sleep mode.
- * This will not affect any of the timers we use for alarm.
- */
-void
-IdleLoop ()
-{
-  while (1) {
-    /*
-     * Set SM0...3 to 0 and SE to 1 in SMCR. With a sleep
-     * instruction, we will enter idle mode in this setting.
-     */
-    SMCR = (1 << SE);
-    /* Now, enter idle mode. */
-    __asm__ volatile ("sleep");
-  }
-}
+#ifdef __ARCH_AVR5__
+#include <arch/avr5/vector.h>
+#elif defined __ARCH_AVR6__
+#include <arch/avr6/vector.h>
+#endif
+
+#endif
 
 /* vi: set et ai sw=2 sts=2: */

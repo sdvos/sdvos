@@ -18,14 +18,14 @@
  */
 
 /**
- * @file   src/include/arch/avr5/interrupt.h
+ * @file   src/include/arch/avr/interrupt.h
  * @author Ye Li (liye@sdvos.org)
- * @brief  AVR5 Interrupt Management
+ * @brief  AVR Interrupt Management
  */
-#ifndef _AVR5_INTERRUPT_H_
-#define _AVR5_INTERRUPT_H_
+#ifndef _AVR_INTERRUPT_H_
+#define _AVR_INTERRUPT_H_
 
-#include <arch/avr5/task.h>
+#include <arch/avr/task.h>
 #include <sdvos.h>
 
 /**

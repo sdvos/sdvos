@@ -28,9 +28,9 @@
 #ifdef __ARCH_I386__
 #include <arch/i386/types.h>
 #include <arch/i386/atomic.h>
-#elif defined __ARCH_AVR5__
-#include <arch/avr5/types.h>
-#include <arch/avr5/atomic.h>
+#elif defined __ARCH_AVR5__ || defined __ARCH_AVR6__
+#include <arch/avr/types.h>
+#include <arch/avr/atomic.h>
 #elif defined __ARCH_ARMV7M__
 #include <arch/armv7m/types.h>
 #include <arch/armv7m/atomic.h>

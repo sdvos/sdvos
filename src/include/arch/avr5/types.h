@@ -42,31 +42,8 @@
 
 #include <assert.h>
 
-typedef unsigned char uint8_t;
-typedef unsigned int uint16_t;
-typedef unsigned long int uint32_t;
-typedef unsigned long long uint64_t;
-
-typedef signed char int8_t;
-typedef signed int int16_t;
-typedef signed long int int32_t;
-typedef signed long long int64_t;
-
 /* Integer with the same length as code pointer */
 typedef uint16_t code_addr_t;
-/* Integer with the same length as data pointer */
-typedef uint16_t data_addr_t;
-
-/* Platform default signed data type */
-typedef int8_t data_word_t;
-/* Platform default unsigned data type */
-typedef uint8_t udata_word_t;
-/* Type for flags (8-bit minimum) */
-typedef uint8_t FlagType;
-/* Type for OS service parameter (in debug structure) */
-typedef data_addr_t ParamType;
-
-typedef uint8_t bool;
 
 /**
  * @union task_context

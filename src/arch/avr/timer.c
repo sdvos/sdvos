@@ -18,13 +18,13 @@
  */
 
 /**
- * @file   src/arch/avr5/timer.c
+ * @file   src/arch/avr/timer.c
  * @author Ye Li (liye@sdvos.org)
  * @brief  AVR5 Timer/Counter
  */
-#include <arch/avr5/io.h>
-#include <arch/avr5/vector.h>
-#include <arch/avr5/interrupt.h>
+#include <arch/avr/io.h>
+#include <arch/avr/vector.h>
+#include <arch/avr/interrupt.h>
 #include <sdvos.h>
 
 void

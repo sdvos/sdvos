@@ -18,11 +18,11 @@
  */
 
 /**
- * @file   src/arch/avr5/syscall.c
+ * @file   src/arch/avr/syscall.c
  * @author Ye Li (liye@sdvos.org)
  * @brief  System Services
  *
- * In AVR5 system services are simply wrappers around
+ * In AVR system services are simply wrappers around
  * internal service implementations which disables
  * interrupt before the service and enables it afterwards.
  * Extra care is taken to determine whether interrupt is

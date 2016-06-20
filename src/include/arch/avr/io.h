@@ -18,19 +18,19 @@
  */
 
 /**
- * @file   src/include/arch/avr5/io.h
+ * @file   src/include/arch/avr/io.h
  * @author Ye Li (liye@sdvos.org)
- * @brief  AVR5 I/O Ports
+ * @brief  AVR I/O Ports
  */
-#ifndef _AVR5_IO_H_
-#define _AVR5_IO_H_
+#ifndef _AVR_IO_H_
+#define _AVR_IO_H_
 
 /*
  * IO Macros used in C for Atmega328p. Do not include if
  * avr/io.h in avr-libc is used.
  */
 
-#include <arch/avr5/types.h>
+#include <arch/avr/types.h>
 
 /**
  * @def _IO_TO_DATA

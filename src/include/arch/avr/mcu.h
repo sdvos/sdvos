@@ -18,9 +18,9 @@
  */
 
 /**
- * @file   src/include/arch/avr5/mcu.h
+ * @file   src/include/arch/avr/mcu.h
  * @author Ye Li (liye@sdvos.org)
- * @brief  AVR5 MCU Initialization
+ * @brief  AVR MCU Initialization
  */
 #include <config/config.h>
 
