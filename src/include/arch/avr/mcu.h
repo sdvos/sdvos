@@ -62,19 +62,17 @@ TstI ()
  * @def McuInit()
  * @brief MCU specific initialization
  *
- * Initialization code for AVR5. In AVR5, we do not need
+ * Initialization code for AVR. In AVR, we do not need
  * to do much initialization since the chip does not have
  * privilege level or memory protection aside from
- * bootloader area. Here, we simply switch the current
- * stack to KERN_STACK. KERN_STACK is not necessarily the
- * kernel stack tasks use. It might just be used during
- * StartOS or by idle task.
+ * bootloader area. Here, we only disable the interrupt
+ * globally. We rely on the code before calling StartOS
+ * to have the stack setup with enough space for temporary
+ * use before the first task.
  */
 #define McuInit()  do {                          \
   /* Disable all interrupts */                   \
   __asm__ volatile ("cli");                      \
-  /* Switch to the kernel stack (temporary) */   \
-  SwitchStack (KERN_STACK);                      \
 } while (0)
 
 /* vi: set et ai sw=2 sts=2: */

@@ -189,9 +189,9 @@ InitContext (TCB * task)
   task->context.regs.pch = ((task->start) >> 8) & 0xFF;
   task->context.regs.pcl = (task->start) & 0xFF;
   sdvos_memset (&(task->context.raw[2]), 0, CONTEXT_SIZE - 2);
-  /* Enable interrupt in task level */
+  /* Disable interrupt in task level for full context restore */
   /* Global Interrupt Enable: Bit 7 (I) in SREG */
-  task->context.regs.sreg |= (1 << 7);
+  task->context.regs.sreg |= (0 << 7);
 }
 
 #endif
