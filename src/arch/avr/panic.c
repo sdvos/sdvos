@@ -53,6 +53,9 @@ panic ()
    * is not really a big problem. Anyway, just remember
    * there is no guarantee the pc printed is correct.
    */
+#ifdef __ARCH_AVR6__
+  __asm__ volatile ("pop r0\n\t"::: "r0");
+#endif
   __asm__ volatile ("pop r0\n\t"
                     "mov %B0, r0\n\t"
                     "pop r0\n\t"
