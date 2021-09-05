@@ -2069,12 +2069,16 @@ generate_code ()
     } else if (task->resource == NULL) {
       PRT_CFGC ("INVALID_PRIO, ");
     } else {
+      bool has_ires = FALSE;
       for_each (resource, task->resource, index2) {
         if (resource->property.type == RESOURCE_TYPE_INTERNAL) {
           PRT_CFGC ("%d, ", resource->priority);
+          has_ires = TRUE;
           break;
         }
       }
+      if (!has_ires)
+        PRT_CFGC ("INVALID_PRIO, ");
     }
     PRT_CFGC ("NULL, SUSPENDED, 0, 0,\n");
     PRT_CFGC ("   (TASK_STACK_%d - TASK_STK_SIZE_%d),\n",
